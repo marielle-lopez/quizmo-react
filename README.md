@@ -8,3 +8,10 @@
 - Installed Vitest for unit and component testing
 - Installed React Router DOM to handle routing
 - Installed Tailwind CSS for styling
+- Started fetching data from Open Trivia DB (OpenTDB) API
+- Created `decodeHtmlEntities()` to replace HTML entities in a given string, and also constructed corresponding unit test
+- Created `shuffleArray()` which sorts the elements of a given array in a random manner using the [Fisher-Yates sorting algorithm](https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/)
+
+One of the things I noticed was HTML entities existing within questions. I constructed the `decodeHtmlEntities()` function to help with this. I installed the [html-entities](https://www.npmjs.com/package/html-entities) package, which takes an array of HTML entities and returns another array of their corresponding symbol.
+
+As with many fetch requests, not every single one will be successful. So, in order to communicate this to the user, I'll need to display some sort of message. Offering an opportunity to the user to retry fetching or automatically doing it for the user would be a case of improving UX.
