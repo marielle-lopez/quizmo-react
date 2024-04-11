@@ -11,6 +11,7 @@
 - Created `shuffleArray()` which sorts the elements of a given array in a random manner using the [Fisher-Yates sorting algorithm](https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/)
 - Play page allows user to start a game, answer questions, and stores user's score, but also play another game after completing one
 - Added `loading` and `error` states to provide feedback to the user on processes that take time
+- Questions are now timed; users have 5 seconds to answer each question
 
 One of the things I noticed was HTML entities existing within questions. I constructed the `decodeHtmlEntities()` function to help with this. I installed the [html-entities](https://www.npmjs.com/package/html-entities) package, which takes an array of HTML entities and returns another array of their corresponding symbol.
 
