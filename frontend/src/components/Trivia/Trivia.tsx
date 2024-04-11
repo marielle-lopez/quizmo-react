@@ -28,11 +28,13 @@ const Trivia = ({
           <button
             key={answer}
             onClick={() => {
-              answer === question.correct_answer && setScore(score + 1);
+              decodeHtmlEntities(answer) ===
+                decodeHtmlEntities(question.correct_answer) &&
+                setScore(score + 1);
               setCurrentQuestion(currentQuestion + 1);
             }}
           >
-            {answer}
+            {decodeHtmlEntities(answer)}
           </button>
         </>
       ))}
