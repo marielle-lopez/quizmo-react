@@ -19,6 +19,9 @@ const Trivia = ({
     question.correct_answer,
     ...question.incorrect_answers,
   ]);
+  const timer = setTimeout(() => {
+    setCurrentQuestion(currentQuestion + 1);
+  }, 5000);
 
   return (
     <div>
@@ -28,6 +31,7 @@ const Trivia = ({
           <button
             key={answer}
             onClick={() => {
+              clearTimeout(timer);
               decodeHtmlEntities(answer) ===
                 decodeHtmlEntities(question.correct_answer) &&
                 setScore(score + 1);
