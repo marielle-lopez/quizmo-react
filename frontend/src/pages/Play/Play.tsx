@@ -1,16 +1,33 @@
 import { useState, useEffect } from 'react';
 import MainContainer from '../../containers/MainContainer/MainContainer.tsx';
-import { Question } from '../../lib/definitions';
-import { getQuestions } from '../../services/opentdb';
+import { Category, Question } from '../../lib/definitions';
+import { getCategories, getQuestions } from '../../services/opentdb';
 import Trivia from '../../components/Trivia/Trivia';
+import { Difficulty } from '../../lib/enums.ts';
 
 const Play = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
+  const [categories, setCategories] = useState<Category[] | null>(null);
   const [questions, setQuestions] = useState<Question[] | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState<number | null>(null);
   const [score, setScore] = useState<number | null>(null);
   const [gameOver, setGameOver] = useState<boolean>(true);
+
+  useEffect(() => {
+    setLoading(true);
+    getCategories()
+      .then((res) => {
+        console.log(res);
+        setCategories(res);
+      })
+      .catch((err) => {
+        console.warn(err.message);
+        setError(err.message);
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
   const fetchNewQuestions = () => {
     setLoading(true);
@@ -53,6 +70,26 @@ const Play = () => {
           >
             Try again
           </button>
+        </>
+      )}
+      {!loading && !error && categories && (
+        <>
+          <select>
+            {Object.values(Difficulty)
+              .filter((difficulty) => typeof difficulty === 'string')
+              .map((difficulty) => (
+                <option key={difficulty} value={difficulty}>
+                  {difficulty}
+                </option>
+              ))}
+          </select>
+          <select>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
         </>
       )}
       {!loading &&
