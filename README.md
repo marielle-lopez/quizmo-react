@@ -2,11 +2,18 @@
 
 ## Changelog
 
+### 12 April 2024
+
+- Started fetching data from OpenTDB API for available categories
+  - Added a dropdown with fetched categories as options
+- Created `Difficulty` enum for available difficulties
+  - Added a dropdown with values of `Difficulty` enum as selectable options
+
 ### 11 April 2024
 
 - Set up default React application with Vite
 - Installed Vitest for unit and component testing, React Router DOM to handle routing, and Tailwind CSS for styling
-- Started fetching data from Open Trivia DB (OpenTDB) API
+- Started fetching data from Open Trivia DB (OpenTDB) API for questions
 - Created `decodeHtmlEntities()` to replace HTML entities in a given string, and also constructed corresponding unit test
 - Created `shuffleArray()` which sorts the elements of a given array in a random manner using the [Fisher-Yates sorting algorithm](https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/)
 - Play page allows user to start a game, answer questions, and stores user's score, but also play another game after completing one
