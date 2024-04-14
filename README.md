@@ -1,6 +1,10 @@
-# Quizmo
+# ![Quizmo logo](/logo-sm.png)
 
 ## Changelog
+
+### 14 April 2024
+
+- Designed and created Quizmo logo
 
 ### 11 April 2024
 
