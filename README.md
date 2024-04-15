@@ -7,6 +7,8 @@
 - Added extra error handling for different scenarios
   - For example, when too many requests to the OpenTDB API have occurred, tell the user to retry in 5 seconds
   - Another example is when there aren't enough questions for the user's selected difficulty and category combination, tell the user to select a new difficulty and/or category
+- Removed React fragments in `Trivia` component wrapping `button` element
+  - This was causing an error to show in the console, which was saying each element requires a `key` prop, even though each `button` element has a specified `key` prop
 
 ### 14 April 2024
 
