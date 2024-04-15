@@ -12,7 +12,7 @@
 - Created the `Countdown` component to hold the progress bar to display the remaining time left the user has to answer shown question
   - This still needs to be implemented
 
-At the moment, I'm currently confused about how to implement the `Countdown` component with the `Trivia` component. At first I made a `progress` state inside of `Trivia.tsx`; however, updating this piece of state updates the entire `Trivia` component. This causes the answers of the question to re-shuffle.
+Previously, I was confused about how to implement the `Countdown` component with the `Trivia` component. At first I made a `progress` state inside of `Trivia.tsx`; however, updating this piece of state updates the entire `Trivia` component. This causes the answers of the question to re-shuffle. To remedy this, I created a `currentAnswers` state in `Play.tsx` which would pre-emptively shuffle the answers of the current question. This `currentAnswers` state would be passed as a prop to the `Trivia` component, allowing the `progress` state to update without re-shuffling the answers of the shown question.
 
 ### 14 April 2024
 
