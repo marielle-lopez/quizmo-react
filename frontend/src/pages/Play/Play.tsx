@@ -3,12 +3,11 @@ import MainContainer from '../../containers/MainContainer/MainContainer.tsx';
 import { Category, Question } from '../../lib/definitions';
 import { getCategories, getQuestions } from '../../services/opentdb';
 import Trivia from '../../components/Trivia/Trivia';
-import { Difficulty } from '../../lib/enums.ts';
+import PlayForm from '../../components/PlayForm/PlayForm.tsx';
 
 const Play = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
   const [categories, setCategories] = useState<Category[] | null>(null);
   const [questions, setQuestions] = useState<Question[] | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState<number | null>(null);
@@ -19,7 +18,6 @@ const Play = () => {
     setLoading(true);
     getCategories()
       .then((res) => {
-        console.log(res);
         setCategories(res);
       })
       .catch((err) => {
@@ -29,9 +27,9 @@ const Play = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const fetchNewQuestions = () => {
+  const fetchNewQuestions = (difficulty: string, category: number) => {
     setLoading(true);
-    getQuestions()
+    getQuestions(difficulty, category)
       .then((res) => {
         setQuestions(res);
         setLoading(false);
@@ -41,10 +39,6 @@ const Play = () => {
         setLoading(false);
       });
   };
-
-  useEffect(() => {
-    fetchNewQuestions();
-  }, []);
 
   useEffect(() => {
     if (questions && currentQuestion !== null) {
@@ -65,33 +59,25 @@ const Play = () => {
           <button
             onClick={() => {
               setError(null);
-              fetchNewQuestions();
             }}
           >
             Try again
           </button>
         </>
       )}
-      {!loading && !error && categories && (
-        <>
-          <select>
-            {Object.values(Difficulty)
-              .filter((difficulty) => typeof difficulty === 'string')
-              .map((difficulty) => (
-                <option key={difficulty} value={difficulty}>
-                  {difficulty}
-                </option>
-              ))}
-          </select>
-          <select>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </>
-      )}
+      {!loading &&
+        !error &&
+        categories &&
+        !questions &&
+        gameOver &&
+        score === null && (
+          <PlayForm
+            submitForm={(data) =>
+              fetchNewQuestions(data.difficulty, data.category)
+            }
+            categories={categories}
+          />
+        )}
       {!loading &&
         !error &&
         questions &&
@@ -135,7 +121,6 @@ const Play = () => {
           <p>{score}</p>
           <button
             onClick={() => {
-              fetchNewQuestions();
               setScore(null);
             }}
           >
