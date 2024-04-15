@@ -4,6 +4,7 @@ import { Category, Question } from '../../lib/definitions';
 import { getCategories, getQuestions } from '../../services/opentdb';
 import Trivia from '../../components/Trivia/Trivia';
 import PlayForm from '../../components/PlayForm/PlayForm.tsx';
+import { shuffleArray } from '../../lib/functions/shuffle-array.ts';
 
 const Play = () => {
   const [error, setError] = useState<string | null>(null);
@@ -11,6 +12,7 @@ const Play = () => {
   const [categories, setCategories] = useState<Category[] | null>(null);
   const [questions, setQuestions] = useState<Question[] | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState<number | null>(null);
+  const [currentAnswers, setCurrentAnswers] = useState<string[] | null>(null);
   const [score, setScore] = useState<number | null>(null);
   const [gameOver, setGameOver] = useState<boolean>(true);
 
@@ -46,6 +48,14 @@ const Play = () => {
         setGameOver(true);
         setQuestions(null);
         setCurrentQuestion(null);
+        setCurrentAnswers(null);
+      } else {
+        setCurrentAnswers(() => {
+          return shuffleArray([
+            questions[currentQuestion].correct_answer,
+            ...questions[currentQuestion].incorrect_answers,
+          ]);
+        });
       }
     }
   }, [currentQuestion]);
@@ -91,6 +101,12 @@ const Play = () => {
                 setGameOver(false);
                 setScore(0);
                 setCurrentQuestion(0);
+                setCurrentAnswers(() => {
+                  return shuffleArray([
+                    questions[0].correct_answer,
+                    ...questions[0].incorrect_answers,
+                  ]);
+                });
               }}
             >
               Start
@@ -102,6 +118,7 @@ const Play = () => {
         questions &&
         currentQuestion !== null &&
         currentQuestion < questions.length &&
+        currentAnswers &&
         score !== null &&
         !gameOver && (
           <>
@@ -110,6 +127,7 @@ const Play = () => {
               question={questions[currentQuestion]}
               currentQuestion={currentQuestion}
               setCurrentQuestion={setCurrentQuestion}
+              currentAnswers={currentAnswers}
               score={score}
               setScore={setScore}
             />
