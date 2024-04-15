@@ -11,6 +11,7 @@
   - This was causing an error to show in the console, which was saying each element requires a `key` prop, even though each `button` element has a specified `key` prop
 - Created the `Countdown` component to hold the progress bar to display the remaining time left the user has to answer shown question
   - Implemented this in the `Trivia` component
+- Developed design mockup for Play page and `Navbar` component
 
 Previously, I was confused about how to implement the `Countdown` component with the `Trivia` component. At first I made a `progress` state inside of `Trivia.tsx`; however, updating this piece of state updates the entire `Trivia` component. This causes the answers of the question to re-shuffle. To remedy this, I created a `currentAnswers` state in `Play.tsx` which would pre-emptively shuffle the answers of the current question. This `currentAnswers` state would be passed as a prop to the `Trivia` component, allowing the `progress` state to update without re-shuffling the answers of the shown question.
 
