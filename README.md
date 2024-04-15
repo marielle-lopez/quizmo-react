@@ -9,6 +9,10 @@
   - Another example is when there aren't enough questions for the user's selected difficulty and category combination, tell the user to select a new difficulty and/or category
 - Removed React fragments in `Trivia` component wrapping `button` element
   - This was causing an error to show in the console, which was saying each element requires a `key` prop, even though each `button` element has a specified `key` prop
+- Created the `Countdown` component to hold the progress bar to display the remaining time left the user has to answer shown question
+  - This still needs to be implemented
+
+At the moment, I'm currently confused about how to implement the `Countdown` component with the `Trivia` component. At first I made a `progress` state inside of `Trivia.tsx`; however, updating this piece of state updates the entire `Trivia` component. This causes the answers of the question to re-shuffle.
 
 ### 14 April 2024
 
