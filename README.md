@@ -2,9 +2,18 @@
 
 ## Changelog
 
+### 15 April 2024
+
+- Added extra error handling for different scenarios
+  - For example, when too many requests to the OpenTDB API have occurred, tell the user to retry in 5 seconds
+  - Another example is when there aren't enough questions for the user's selected difficulty and category combination, tell the user to select a new difficulty and/or category
+
 ### 14 April 2024
 
 - Designed and created Quizmo logo
+- Installed React Hook Form and Zod packages
+- Created `PlayForm` component to handle user selection for trivia difficulty and category
+  - Uses React Hook Form for form submission and Zod for validation
 
 ### 12 April 2024
 
