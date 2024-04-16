@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### 16 April 2024
+
+- Created design mockup for landing page
+
 ### 15 April 2024
 
 - Added extra error handling for different scenarios
