@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### 16 April 2024
+
+- Created design mockup for landing page
+
 ### 14 April 2024
 
 - Designed and created Quizmo logo
