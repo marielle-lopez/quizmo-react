@@ -25,7 +25,6 @@ const Trivia = ({
   useEffect(() => {
     timer = setInterval(() => {
       if (progress < 100) {
-        console.log(progress);
         setProgress(progress + 20);
         return;
       }
