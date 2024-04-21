@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### 21 April 2024
+
+- Set up Spring Boot and Java backend application using [Spring Initializr](https://start.spring.io/)
+
 ### 16 April 2024
 
 - Created design mockup for landing page
