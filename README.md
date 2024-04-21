@@ -5,6 +5,7 @@
 ### 21 April 2024
 
 - Set up Spring Boot and Java backend application using [Spring Initializr](https://start.spring.io/)
+- Allow backend to handle `GET`, `POST`, `PATCH`, and `DELETE` HTTP request methods for the `Game` domain
 
 ### 16 April 2024
 
